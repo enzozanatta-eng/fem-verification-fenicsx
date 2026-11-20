@@ -1,0 +1,34 @@
+FEniCSx / DOLFINx 0.11.0.post0
+
+1. CONVERGENCE: -laplace(u) = f on the unit square, u_exact = sin(pi x) sin(pi y)
+  P1:        h    dofs    L2 error  rate    H1 error  rate
+        0.2500      25   7.908e-02         8.385e-01
+        0.1250      81   2.113e-02  1.90   4.318e-01  0.96
+        0.0625     289   5.377e-03  1.97   2.175e-01  0.99
+        0.0312    1089   1.350e-03  1.99   1.090e-01  1.00
+        0.0156    4225   3.380e-04  2.00   5.451e-02  1.00
+     theory: L2 rate 2, H1 rate 1
+  P2:        h    dofs    L2 error  rate    H1 error  rate
+        0.2500      81   4.328e-03         1.294e-01
+        0.1250     289   5.481e-04  2.98   3.339e-02  1.95
+        0.0625    1089   6.874e-05  3.00   8.419e-03  1.99
+        0.0312    4225   8.601e-06  3.00   2.110e-03  2.00
+        0.0156   16641   1.075e-06  3.00   5.277e-04  2.00
+     theory: L2 rate 3, H1 rate 2
+
+2. PLATE WITH A HOLE IN TENSION (plane stress, P2 elements, quarter model)
+  Mesh convergence, W = 20 d (almost infinite plate):
+    hole element size 0.400 mm,    5618 dofs: peak  308.53 MPa, Kt(gross) = 3.0853, Kt(net) = 2.9311
+    hole element size 0.200 mm,   13942 dofs: peak  304.81 MPa, Kt(gross) = 3.0481, Kt(net) = 2.8957
+    hole element size 0.100 mm,   38362 dofs: peak  302.03 MPa, Kt(gross) = 3.0203, Kt(net) = 2.8693
+    hole element size 0.050 mm,  119722 dofs: peak  301.04 MPa, Kt(gross) = 3.0104, Kt(net) = 2.8599
+  Kirsch (infinite plate): Kt = 3.000; Heywood at d/W = 0.050: 2.8574; FEA: 2.8599
+
+  Finite-width plates (Kt referred to the net section):
+    d/W = 0.05: FEA Kt = 2.8599, Heywood 2.8574 (+0.1%)
+    d/W = 0.10: FEA Kt = 2.7361, Heywood 2.7290 (+0.3%)
+    d/W = 0.20: FEA Kt = 2.5276, Heywood 2.5120 (+0.6%)
+    d/W = 0.30: FEA Kt = 2.3701, Heywood 2.3430 (+1.2%)
+    d/W = 0.40: FEA Kt = 2.2595, Heywood 2.2160 (+2.0%)
+    d/W = 0.50: FEA Kt = 2.1894, Heywood 2.1250 (+3.0%)
+    d/W = 0.60: FEA Kt = 2.1478, Heywood 2.0640 (+4.1%)
